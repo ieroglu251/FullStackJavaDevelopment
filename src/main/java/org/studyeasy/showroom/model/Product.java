@@ -1,7 +1,9 @@
-package org.studyeasy.showroom.hibernate.entities;
+package org.studyeasy.showroom.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -9,15 +11,16 @@ import javax.persistence.Table;
 
 @Entity(name = "products")
 @Table(name = "products")
-public class ProductEntity {
+public class Product {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "productId")
 	int productId;
 	
-	@ManyToOne(targetEntity = BrandEntity.class)
+	@ManyToOne(targetEntity = Brand.class)
 	@JoinColumn(name = "brandId")
-	BrandEntity brandEntity;
+	Brand brandEntity;
 	
 	@Column(name = "productName")
 	String productName;
@@ -28,7 +31,7 @@ public class ProductEntity {
 	@Column(name = "cost")
 	String cost;
 
-	public ProductEntity() {
+	public Product() {
 	
 	}
 
@@ -42,11 +45,11 @@ public class ProductEntity {
 
 	
 
-	public BrandEntity getBrandEntity() {
+	public Brand getBrandEntity() {
 		return brandEntity;
 	}
 
-	public void setBrandEntity(BrandEntity brandEntity) {
+	public void setBrandEntity(Brand brandEntity) {
 		this.brandEntity = brandEntity;
 	}
 

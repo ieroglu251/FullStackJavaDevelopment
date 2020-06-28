@@ -9,20 +9,20 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.studyeasy.showroom.hibernate.entities.ProductEntity;
+import org.studyeasy.showroom.model.Product;
 import org.studyeasy.showroom.services.ProductsService;
 
 //@Path("/showroom/brands")
-public class Products {
+public class ProductsResource {
 	
 	ProductsService productService = new ProductsService();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ProductEntity> getProducts(@PathParam("brandId") int brandId, @QueryParam("category") String category,
+	public List<Product> getProducts(@PathParam("brandId") int brandId, @QueryParam("category") String category,
 			@QueryParam("start") int start, @QueryParam("end") int end) {
 		
-		List<ProductEntity> Productlist;
+		List<Product> Productlist;
 		if (category != null) {
 			Productlist = productService.getProductsByBrandAndCategory(brandId, category);
 		}else {

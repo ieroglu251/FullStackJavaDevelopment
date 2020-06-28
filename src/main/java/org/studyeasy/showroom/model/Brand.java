@@ -1,26 +1,45 @@
-package org.studyeasy.showroom.hibernate.entities;
+package org.studyeasy.showroom.model;
+
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity(name="brands")
 @Table(name="brands")
-public class BrandEntity {
+public class Brand {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="brandId")
 	int brandId;
 	
 	@Column(name="brandName")
-	String brandName;
+	private String brandName;
 	
-	public BrandEntity() {
+	@Transient
+	private List<Link> links;
+	
+
+
+	public List<Link> getLinks() {
+		return links;
+	}
+
+	public void setLinks(List<Link> links) {
+		this.links = links;
+	}
+
+	public Brand() {
 		
 	}
 
-	public BrandEntity(int brandId, String brandName) {
+	public Brand(int brandId, String brandName) {
 		super();
 		this.brandId = brandId;
 		this.brandName = brandName;
